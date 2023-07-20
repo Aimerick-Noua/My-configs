@@ -1,0 +1,147 @@
+Mysql connection to db with springboot  
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/account
+    hikari:
+      username: root
+      password:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+###################################### postgresql connection to db with springboot #################################
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shop
+    username: shop
+    password: shop
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: 'create-drop'
+
+    show-sql: true
+    properties:
+      hibernate:
+        format-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+###################### connecting to zipkin tracing #########################
+docker run -d -p 9411:9411 openzipkin/zipkin
+
+
+
+
+
+to enable swagger doc:
+To add Swagger to your Spring Boot microservices and document the APIs with headers and descriptions, you can follow these steps:
+
+**1. Add Swagger Dependencies:**
+
+Add the following dependencies to your `pom.xml` file for each microservice:
+
+```xml
+<dependencies>
+    <!-- Other dependencies -->
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-boot-starter</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+</dependencies>
+```
+
+**2. Enable Swagger Configuration:**
+
+In each microservice, you need to configure Swagger. Create a configuration class to enable Swagger and define API information:
+
+```java
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.example.microservice.controller")) // Set your base package for controllers
+                .build()
+                .apiInfo(apiInfo());
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("Your Microservice API Documentation")
+                .description("APIs for managing employee training")
+                .version("1.0")
+                .contact(new Contact("Your Name", "https://www.example.com", "your.email@example.com"))
+                .build();
+    }
+}
+```
+
+**3. Documenting APIs with Headers and Descriptions:**
+
+To provide additional details like headers and descriptions for your APIs, you can use Swagger annotations in your controller methods. Here's an example:
+
+```java
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/employees")
+@Api(tags = "Employee Management", description = "APIs for managing employee details")
+public class EmployeeController {
+
+    @PostMapping
+    @ApiOperation(value = "Create a new employee", notes = "Endpoint to create a new employee")
+    public ResponseEntity<Employee> createEmployee(
+            @ApiParam(value = "Employee details", required = true) @RequestBody Employee employee
+    ) {
+        // Implementation code here
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get an employee by ID", notes = "Endpoint to get an employee by ID")
+    public ResponseEntity<Employee> getEmployeeById(
+            @ApiParam(value = "Employee ID", required = true) @PathVariable Long id
+    ) {
+        // Implementation code here
+    }
+
+    // Other controller methods and APIs
+}
+```
+
+**4. Show Dependencies:**
+
+To view the dependencies of your project, you can use the following Maven command:
+
+```bash
+mvn dependency:tree
+```
+
+This command will display a tree-like structure showing all the dependencies and their versions used in your microservice project.
+
+**5. Running and Accessing Swagger UI:**
+
+With the above configuration, Swagger UI should be automatically accessible at `http://localhost:8080/swagger-ui/` for each microservice.
+
+Remember to replace `com.example.microservice.controller` with the correct base package for your microservice's controller classes, and customize the API methods with appropriate descriptions, headers, and other relevant information as per your microservice's functionality.
