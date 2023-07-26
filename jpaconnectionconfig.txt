@@ -41,16 +41,11 @@ docker run -d -p 9411:9411 openzipkin/zipkin
 ##############################################  to enable swagger doc: ###########################################
 
 To add Swagger to your Spring Boot microservices and document the APIs with headers and descriptions, you can follow these steps:
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>LATEST</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
-		</dependency>
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.0.0</version>
+</dependency>
 
 ###################################################### API GateWay Config ################################################
 
@@ -88,6 +83,35 @@ spring:
      
 #########################################################################################################################
 
+########################################### springboot circuit breaker ##################################################
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+implementation of circuit breaker code for a bored_api +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    private final RestTemplate restTemplate;
+
+    private final String BORED_API = "https://www.boredapi.com/api/activity";
+
+    @GetMapping("activity")
+    @Operation(summary = "Example Endpoint", description = "An example of a POST endpoint.")
+
+    @CircuitBreaker(name = "randomActivity", fallbackMethod = "fallbackRandomActivity")
+    public String getRandomActivity() {
+        ResponseEntity<Activity> responseEntity = restTemplate.getForEntity(BORED_API, Activity.class);
+        Activity activity = responseEntity.getBody();
+        log.info("Activity received: " + activity.getActivity());
+        return activity.getActivity();
+    }
+
+    public String fallbackRandomActivity(Throwable throwable) {
+        return "service not available retry again later";
+    }
+#########################################################################################################################
 
 
 
