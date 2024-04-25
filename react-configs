@@ -1,5 +1,5 @@
 1-CONFIGURE CSS IMPORT MODULE SNIPPET .......................................6
-
+2-AUTO IMPORT REACT CODE SNIPPET WITHOUT REACT LIBRARY IMPORT ...............16
 
 
 ################################################################################################################################################################################
@@ -11,6 +11,32 @@ CONFIGURE CSS IMPORT MODULE SNIPPET
 		"description": "Import CSS Module as `styles`"
 	  },
 ################################################################################################################################################################################
+
+**************************************************************************************************************************
+Auto import snippet code without importing react library to component
+
+		"ReactFunctionalComponent": {
+		  "prefix": "rfce",
+		  "body": [
+			"function ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}() {",
+			"\treturn (",
+			"\t\t<div>$1</div>",
+			"\t);",
+			"}",
+			"",
+			"export default ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/};"
+		  ],
+		  "description": "Generate React functional component"
+		}
+
+*************************************************************************************************************************
+
+
+
+
+
+
+
 
 USEFUL RESOURCES
 👉 React Libraries for 2023 (Written in 2023, but will be up-to-date for years, as the ecosystem is relatively stable now)
