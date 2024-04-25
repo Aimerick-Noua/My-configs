@@ -13,3 +13,32 @@ export default defineConfig({
   plugins:[react(),eslint()]
 })
 ################################################################################################################################################################################
+
+USEFUL RESOURCES
+👉 React Libraries for 2023 (Written in 2023, but will be up-to-date for years, as the ecosystem is relatively stable now)
+https://www.robinwieruch.de/react-libraries/?ref=jonas.io#file-upload-in-react
+
+👉 Practical React Query (A huge series from one of React Query's maintainers. Started in 2020, but is still going, and still very helpful)
+https://tkdodo.eu/blog/practical-react-query?ref=jonas.io
+
+👉 Styled-components best practices (By the excellent writer and educator Josh W. Comeau)
+https://www.joshwcomeau.com/css/styled-components/?ref=jonas.io
+
+ Bulletproof-react: A simple, scalable, and powerful architecture for building production-ready React applications (GitHub repository)
+https://github.com/alan2207/bulletproof-react?ref=jonas.io
+
+
+Library documentation:
+
+👉 Tailwind CSS: Installation With Vite
+
+👉 styled-components
+
+👉 Supabase Javascript Client Library
+
+👉 TanStack (React) Query v4
+
+👉 Recharts
+
+👉 date-fns
+
