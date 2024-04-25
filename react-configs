@@ -1,0 +1,15 @@
+1-ADDING ESLINT TO PROJECT .......................................6
+
+
+
+################################################################################################################################################################################
+ADDING ESLINT TO PROJECT
+npm i eslint vite-plugin-eslint eslint-config-react-app --save-dev for installing eslint.
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react"
+import eslint from "vite-plugin-eslint";
+
+export default defineConfig({
+  plugins:[react(),eslint()]
+})
+################################################################################################################################################################################
