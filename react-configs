@@ -32,6 +32,8 @@ Auto import snippet code without importing react library to component
 *************************************************************************************************************************
 
 npm i --save-dev vite-plugin-eslint eslint-config-react-app eslint
+npm i --save @supabase/supabase-js for installing supabase via cli
+**************************************************************************************************************************
 
 
 
