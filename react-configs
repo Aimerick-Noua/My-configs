@@ -2,7 +2,7 @@
 2-AUTO IMPORT REACT CODE SNIPPET WITHOUT REACT LIBRARY IMPORT ...............16
 3- INTALLING ESLINT FOR A PROJECT ...........................................34
 4- INSTALLING SUPABASE VIA CLI ..............................................35
-
+5- INSTALLING DATE-FNS FUNCTIONS FOR MANIPULATING DATE ......................38
 
 ################################################################################################################################################################################
 CONFIGURE CSS IMPORT MODULE SNIPPET
@@ -35,6 +35,7 @@ Auto import snippet code without importing react library to component
 
 npm i --save-dev vite-plugin-eslint eslint-config-react-app eslint
 npm i --save @supabase/supabase-js for installing supabase via cli
+npm i date-fns for manipulating data (its a function)
 **************************************************************************************************************************
 
 
@@ -43,6 +44,9 @@ npm i --save @supabase/supabase-js for installing supabase via cli
 
 
 USEFUL RESOURCES
+
+emoji as a favicon =>): https://css-tricks.com/emoji-as-a-favicon/
+
 👉 React Libraries for 2023 (Written in 2023, but will be up-to-date for years, as the ecosystem is relatively stable now)
 https://www.robinwieruch.de/react-libraries/?ref=jonas.io#file-upload-in-react
 
